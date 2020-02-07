@@ -150,8 +150,11 @@ elseif(IOS_PLATFORM)
     if(NOT MIN_IOS_VER)
       set(MIN_IOS_VER "7.0")
     endif()
-    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -miphoneos-version-min=" ${MIN_IOS_VER})
-    set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -mfpu=neon -miphoneos-version-min=" ${MIN_IOS_VER})
+    # TODO(jim): This change is bad news
+    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
+    set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -mfpu=neon")
+#    set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -miphoneos-version-min=" ${MIN_IOS_VER})
+#    set(CMAKE_ASM_FLAGS "${CMAKE_C_FLAGS} -mfpu=neon -miphoneos-version-min=" ${MIN_IOS_VER})
 
     if(${NE10_TARGET_ARCH} STREQUAL "armv7")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -mfpu=vfp3 -arch armv7 -arch armv7s")
